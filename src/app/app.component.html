@@ -16,8 +16,9 @@
       <form (ngSubmit)=onSubmit() #g="ngForm">
         <div class="form-group">
           <label for="email">Mail Address</label>
-          <input type="email" id="email" class="form-control" ngModel name="email" required email>
+          <input #email="ngModel" type="email" id="email" class="form-control" ngModel name="email" required email>
         </div>
+        <span class="help-block" *ngIf="!email.valid && email.touched">enter valid email</span>
         <div class="form-group">
           <label for="secret">Subscription</label>
           <select id="subscription" class="form-control" [ngModel]="defaultSubscription" name="subscription">
@@ -32,8 +33,10 @@
 
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" class="form-control" ngModel name="password" required>
+          <input #password="ngModel" type="password" id="password" class="form-control" ngModel name="password"
+            required>
         </div>
+        <span class="help-block" *ngIf="!password.valid && password.touched">enter valid pwd</span>
 
 
         <button class="btn btn-primary" type="submit" [disabled]="!g.valid">Submit</button>
